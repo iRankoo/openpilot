@@ -129,7 +129,7 @@ def manager_thread() -> None:
     ignore.append("pandad")
   ignore += [x for x in os.getenv("BLOCK", "").split(",") if len(x) > 0]
 
-  params.put_bool("dp_device_is_clone", dp_device_is_clone)
+  #params.put_bool("dp_device_is_clone", dp_device_is_clone)
   dp_device_dm_unavailable = params.get_bool("dp_device_dm_unavailable")
   if dp_device_dm_unavailable:
     ignore += ["uploader", "dmonitoringd", "dmonitoringmodeld"]
