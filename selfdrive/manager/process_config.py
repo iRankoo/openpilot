@@ -87,6 +87,8 @@ procs = [
   NativeProcess("bridge", "cereal/messaging", ["./bridge"], notcar),
   PythonProcess("webrtcd", "system.webrtc.webrtcd", notcar),
   PythonProcess("webjoystick", "tools.bodyteleop.web", notcar),
+  #
+  PythonProcess("dpdmonitoringd", "selfdrive.fp.dpdmonitoringd", only_onroad, enabled=not PC),
 ]
 
 managed_processes = {p.name: p for p in procs}
