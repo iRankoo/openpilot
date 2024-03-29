@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QWidget>
+#include <QComboBox>
 
 #include "selfdrive/ui/ui.h"
 #include "selfdrive/ui/qt/util.h"
@@ -68,12 +69,15 @@ public slots:
   void expandToggleDescription(const QString &param);
 
 private slots:
+  void onSelectedCar(const QString &text);
+
   void updateState(const UIState &s);
 
 private:
   Params params;
   std::map<std::string, ParamControl*> toggles;
   ButtonParamControl *long_personality_setting;
+  QComboBox *car_type;
 
   void updateToggles();
 };

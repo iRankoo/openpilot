@@ -17,3 +17,9 @@ Platform = BODY | CHRYSLER | FORD | GM | HONDA | HYUNDAI | MAZDA | MOCK | NISSAN
 BRANDS = [BODY, CHRYSLER, FORD, GM, HONDA, HYUNDAI, MAZDA, MOCK, NISSAN, SUBARU, TESLA, TOYOTA, VOLKSWAGEN]
 
 PLATFORMS: dict[str, Platform] = {str(platform): platform for brand in BRANDS for platform in cast(list[Platform], brand)}
+
+with open("/mnt/op/carlist.txt", 'w') as f:
+  for value in PLATFORMS.values():
+    f.write(value)
+    f.write("\n")
+    #print(value)

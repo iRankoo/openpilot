@@ -15,6 +15,8 @@
 #include "selfdrive/ui/qt/widgets/scrollview.h"
 #include "selfdrive/ui/qt/widgets/ssh_keys.h"
 
+#include <QMessageBox>
+
 TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // param, title, desc, icon
   std::vector<std::tuple<QString, QString, QString, QString>> toggle_defs{
@@ -91,6 +93,12 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // set up uiState update for personality setting
   QObject::connect(uiState(), &UIState::uiUpdate, this, &TogglesPanel::updateState);
 
+  //car tpye combobox
+  car_type = new QComboBox(this);
+  car_type->addItems({tr("test1"), tr("test2"), tr("Always Little Endian"), tr("Always Big Endian")});
+  connect(car_type, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(onSelectedCar(const QString &)));
+  addItem(car_type);
+
   for (auto &[param, title, desc, icon] : toggle_defs) {
     auto toggle = new ParamControl(param, title, desc, icon, this);
 
@@ -114,6 +122,10 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   connect(toggles["ExperimentalLongitudinalEnabled"], &ToggleControl::toggleFlipped, [=]() {
     updateToggles();
   });
+}
+
+void TogglesPanel::onSelectedCar(const QString &text){
+//  QMessageBox::Information(this, text);
 }
 
 void TogglesPanel::updateState(const UIState &s) {
