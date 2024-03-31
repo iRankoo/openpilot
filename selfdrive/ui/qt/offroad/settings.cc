@@ -353,8 +353,8 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
 void DevicePanel::updateCalibDescription() {
   QString desc =
-      tr("openpilot requires the device to be mounted within 4掳 left or right and "
-         "within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.");
+      tr("openpilot requires the device to be mounted within 4° left or right and "
+         "within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.");
   std::string calib_bytes = params.get("CalibrationParams");
   if (!calib_bytes.empty()) {
     try {
@@ -364,7 +364,7 @@ void DevicePanel::updateCalibDescription() {
       if (calib.getCalStatus() != cereal::LiveCalibrationData::Status::UNCALIBRATED) {
         double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
         double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
-        desc += tr(" Your device is pointed %1掳 %2 and %3掳 %4.")
+        desc += tr(" Your device is pointed %1° %2 and %3° %4.")
                     .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? tr("down") : tr("up"),
                          QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? tr("left") : tr("right"));
       }
@@ -426,7 +426,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   panel_widget = new QStackedWidget();
 
   // close button
-  QPushButton *close_btn = new QPushButton(tr("X"));
+  QPushButton *close_btn = new QPushButton(tr("×"));
   close_btn->setStyleSheet(R"(
     QPushButton {
       font-size: 140px;
@@ -499,14 +499,6 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
 
   // main settings layout, sidebar + main panel
   QHBoxLayout *main_layout = new QHBoxLayout(this);
-
-  //car tpye combobox
-/*  QComboBox *car_type = new QComboBox(this);
-  car_type->addItems({tr("test1"), tr("test2"), tr("Always Little Endian"), tr("Always Big Endian")});
-    car_type->setStyleSheet("background-color: black;");
-    car_type->setStyleSheet("QComboBox QAbstractItemView { background-color: black; }");
-  main_layout->addWidget(car_type);*/
-
 
   sidebar_widget->setFixedWidth(500);
   main_layout->addWidget(sidebar_widget);
