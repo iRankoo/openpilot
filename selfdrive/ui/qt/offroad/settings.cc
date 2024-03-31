@@ -99,9 +99,11 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // set up uiState update for personality setting
   QObject::connect(uiState(), &UIState::uiUpdate, this, &TogglesPanel::updateState);
 
-auto carBtn = new ButtonControl(tr("Select car"), tr("SELECT"), "");
+  carBtn = new QPushButton( "--------------------Select Car --------------------", this);
+ //carBtn->setFixedSize(1500, 80);
+
 //  connect(carBtn, &ButtonControl::showDescriptionEvent, this, &DevicePanel::updateCalibDescription);
-  connect(carBtn, &ButtonControl::clicked, [&]() {
+  connect(carBtn, &QPushButton::clicked, [&]() {
     for(auto &v:toggles)
       v.second->hide();
     long_personality_setting->hide();
@@ -111,6 +113,11 @@ auto carBtn = new ButtonControl(tr("Select car"), tr("SELECT"), "");
 
   listView = new QListView(this);
   QStandardItemModel  *ItemModel = new QStandardItemModel(this);
+
+  connect(listView,SIGNAL(clicked(QModelIndex)),this,SLOT(itemClicked(QModelIndex)));
+
+
+
   QStringList strList;
 
   FILE *in= fopen("/data/openpilot/carlist.txt", "r");
@@ -161,6 +168,24 @@ auto carBtn = new ButtonControl(tr("Select car"), tr("SELECT"), "");
   connect(toggles["ExperimentalLongitudinalEnabled"], &ToggleControl::toggleFlipped, [=]() {
     updateToggles();
   });
+}
+
+void TogglesPanel::itemClicked(QModelIndex index){
+  auto str = index.data().toString();
+  if (str.length() > 0)
+  {
+      this->carBtn->setText(index.data().toString());
+      params.put("FpFingerPrint",  index.data().toString().toStdString() );  
+  }
+
+   qDebug() << index.data().toString();
+
+  this->long_personality_setting->show();
+ this->listView->hide();
+
+  for(auto &v:this->toggles)
+      v.second->show();
+
 }
 
 void TogglesPanel::onSelectedCar(const QString &text){
@@ -251,6 +276,13 @@ void TogglesPanel::updateToggles() {
     experimental_mode_toggle->setDescription(e2e_description);
     op_long_toggle->setVisible(false);
   }
+
+  auto fp_bytes= params.get("FpFingerPrint");
+  if (!fp_bytes.empty()) 
+  {
+      this->carBtn->setText(fp_bytes.c_str());
+  }
+
 }
 
 DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
@@ -353,8 +385,8 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
 void DevicePanel::updateCalibDescription() {
   QString desc =
-      tr("openpilot requires the device to be mounted within 4° left or right and "
-         "within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.");
+      tr("openpilot requires the device to be mounted within 4掳 left or right and "
+         "within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.");
   std::string calib_bytes = params.get("CalibrationParams");
   if (!calib_bytes.empty()) {
     try {
@@ -364,7 +396,7 @@ void DevicePanel::updateCalibDescription() {
       if (calib.getCalStatus() != cereal::LiveCalibrationData::Status::UNCALIBRATED) {
         double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
         double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
-        desc += tr(" Your device is pointed %1° %2 and %3° %4.")
+        desc += tr(" Your device is pointed %1掳 %2 and %3掳 %4.")
                     .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? tr("down") : tr("up"),
                          QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? tr("left") : tr("right"));
       }
@@ -426,7 +458,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   panel_widget = new QStackedWidget();
 
   // close button
-  QPushButton *close_btn = new QPushButton(tr("×"));
+  QPushButton *close_btn = new QPushButton(tr("脳"));
   close_btn->setStyleSheet(R"(
     QPushButton {
       font-size: 140px;
