@@ -71,6 +71,9 @@ public slots:
 private slots:
   void onSelectedCar(const QString &text);
 
+  void itemClicked(QModelIndex index);
+
+
   void updateState(const UIState &s);
 
 private:
@@ -79,6 +82,7 @@ private:
   ButtonParamControl *long_personality_setting;
 
   QListView *listView;
+  QPushButton *carBtn;
 
   void updateToggles();
 };
