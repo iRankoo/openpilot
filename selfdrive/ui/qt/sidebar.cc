@@ -90,12 +90,14 @@ void Sidebar::updateState(const UIState &s) {
   }
   setProperty("connectStatus", QVariant::fromValue(connectStatus));
 
-  FILE *in= fopen("/data/params/d/Temperature", "r");
   char buf[32] = {0};
-  fgets(buf, sizeof(buf), in);
-  fclose(in);
-  buf[4] = 0;
-
+  FILE *in= fopen("/data/params/d/Temperature", "r");
+  if (in) {
+    fgets(buf, sizeof(buf), in);
+    fclose(in);
+    buf[4] = 0;  
+  }
+  
   ItemStatus tempStatus = {{tr("TEMP"), tr("HIGH")+" "+buf}, danger_color};
   auto ts = deviceState.getThermalStatus();
   if (ts == cereal::DeviceState::ThermalStatus::GREEN) {
