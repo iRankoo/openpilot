@@ -14,8 +14,14 @@
 #include "selfdrive/ui/qt/widgets/prime.h"
 #include "selfdrive/ui/qt/widgets/scrollview.h"
 #include "selfdrive/ui/qt/widgets/ssh_keys.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-#include <QMessageBox>
+#include <QListView>
+#include <QLabel>
+#include <QStandardItemModel>
+#include <QScrollBar>
+
 
 TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // param, title, desc, icon
@@ -93,11 +99,44 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // set up uiState update for personality setting
   QObject::connect(uiState(), &UIState::uiUpdate, this, &TogglesPanel::updateState);
 
-  //car tpye combobox
-  car_type = new QComboBox(this);
-  car_type->addItems({tr("test1"), tr("test2"), tr("Always Little Endian"), tr("Always Big Endian")});
-  connect(car_type, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(onSelectedCar(const QString &)));
-  addItem(car_type);
+auto carBtn = new ButtonControl(tr("Select car"), tr("SELECT"), "");
+//  connect(carBtn, &ButtonControl::showDescriptionEvent, this, &DevicePanel::updateCalibDescription);
+  connect(carBtn, &ButtonControl::clicked, [&]() {
+    for(auto &v:toggles)
+      v.second->hide();
+    long_personality_setting->hide();
+    listView->show();
+  });
+  addItem(carBtn);
+
+  listView = new QListView(this);
+  QStandardItemModel  *ItemModel = new QStandardItemModel(this);
+  QStringList strList;
+
+  FILE *in= fopen("/data/openpilot/carlist.txt", "r");
+  char buf[1024];
+
+  while (fgets(buf, sizeof(buf), in) != NULL)
+  {
+      printf("%s", buf);
+      strList.append(buf);
+  }
+  fclose(in);
+
+  int nCount = strList.size();
+  for(int i = 0; i < nCount; i++)
+  {
+      QString string = static_cast<QString>(strList.at(i));
+      QStandardItem *item = new QStandardItem(string);
+      ItemModel->appendRow(item);
+  }
+  listView->setModel(ItemModel);
+  listView->setFixedSize(1800,600);
+  listView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+  listView->verticalScrollBar()->setStyleSheet("QScrollBar{ background: #F0F0F0; width:60px ;margin-top:32px;margin-bottom:32px }""QScrollBar::handle:vertical{ background: red; min-height: 160px ;width:60px }""QScrollBar::sub-line:vertical{height:32px;subcontrol-position:top;subcontrol-origin:margin;}""QScrollBar::add-line:vertical{height:32px;subcontrol-position:bottom;subcontrol-origin:margin;}");
+  listView->hide();
+  addItem(listView);
+
 
   for (auto &[param, title, desc, icon] : toggle_defs) {
     auto toggle = new ParamControl(param, title, desc, icon, this);
@@ -314,8 +353,8 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
 void DevicePanel::updateCalibDescription() {
   QString desc =
-      tr("openpilot requires the device to be mounted within 4° left or right and "
-         "within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.");
+      tr("openpilot requires the device to be mounted within 4掳 left or right and "
+         "within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.");
   std::string calib_bytes = params.get("CalibrationParams");
   if (!calib_bytes.empty()) {
     try {
@@ -325,7 +364,7 @@ void DevicePanel::updateCalibDescription() {
       if (calib.getCalStatus() != cereal::LiveCalibrationData::Status::UNCALIBRATED) {
         double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
         double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
-        desc += tr(" Your device is pointed %1° %2 and %3° %4.")
+        desc += tr(" Your device is pointed %1掳 %2 and %3掳 %4.")
                     .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? tr("down") : tr("up"),
                          QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? tr("left") : tr("right"));
       }
@@ -387,7 +426,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   panel_widget = new QStackedWidget();
 
   // close button
-  QPushButton *close_btn = new QPushButton(tr("×"));
+  QPushButton *close_btn = new QPushButton(tr("脳"));
   close_btn->setStyleSheet(R"(
     QPushButton {
       font-size: 140px;
@@ -418,6 +457,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
     {tr("Network"), new Networking(this)},
     {tr("Toggles"), toggles},
     {tr("Software"), new SoftwarePanel(this)},
+    {tr("Carlist"), new Carlist(this)},
   };
 
   nav_btns = new QButtonGroup(this);
@@ -460,6 +500,14 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   // main settings layout, sidebar + main panel
   QHBoxLayout *main_layout = new QHBoxLayout(this);
 
+  //car tpye combobox
+/*  QComboBox *car_type = new QComboBox(this);
+  car_type->addItems({tr("test1"), tr("test2"), tr("Always Little Endian"), tr("Always Big Endian")});
+    car_type->setStyleSheet("background-color: black;");
+    car_type->setStyleSheet("QComboBox QAbstractItemView { background-color: black; }");
+  main_layout->addWidget(car_type);*/
+
+
   sidebar_widget->setFixedWidth(500);
   main_layout->addWidget(sidebar_widget);
   main_layout->addWidget(panel_widget);
@@ -477,4 +525,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
       border-radius: 30px;
     }
   )");
+}
+
+Carlist::Carlist(QWidget* parent) : ListWidget(parent)
+{
+    addItem(new LabelControl(tr("DDDDD ID"), getDongleId().value_or(tr("N/A"))));
 }
