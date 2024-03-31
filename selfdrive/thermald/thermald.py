@@ -274,7 +274,10 @@ def thermald_thread(end_event, hw_queue) -> None:
     temp_sources.append(max(msg.deviceState.pmicTempC))
     all_comp_temp = all_temp_filter.update(max(temp_sources))
     msg.deviceState.maxTempC = all_comp_temp
-
+    
+    with open("/data/params/d/Temperature", 'w') as f:
+      f.write(str(all_comp_temp))
+      
     if fan_controller is not None:
       msg.deviceState.fanSpeedPercentDesired = fan_controller.update(all_comp_temp, onroad_conditions["ignition"])
 
