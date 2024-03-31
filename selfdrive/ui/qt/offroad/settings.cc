@@ -426,7 +426,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   panel_widget = new QStackedWidget();
 
   // close button
-  QPushButton *close_btn = new QPushButton(tr("脳"));
+  QPushButton *close_btn = new QPushButton(tr("X"));
   close_btn->setStyleSheet(R"(
     QPushButton {
       font-size: 140px;
