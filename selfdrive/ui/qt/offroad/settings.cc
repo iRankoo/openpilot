@@ -131,7 +131,7 @@ auto carBtn = new ButtonControl(tr("Select car"), tr("SELECT"), "");
       ItemModel->appendRow(item);
   }
   listView->setModel(ItemModel);
-  listView->setFixedSize(1650,800);
+  listView->setFixedSize(1600,800);
   listView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
   listView->verticalScrollBar()->setStyleSheet("QScrollBar{ background: #F0F0F0; width:60px ;margin-top:32px;margin-bottom:32px }""QScrollBar::handle:vertical{ background: red; min-height: 160px ;width:60px }""QScrollBar::sub-line:vertical{height:32px;subcontrol-position:top;subcontrol-origin:margin;}""QScrollBar::add-line:vertical{height:32px;subcontrol-position:bottom;subcontrol-origin:margin;}");
   listView->hide();
