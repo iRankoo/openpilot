@@ -9,7 +9,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QWidget>
-#include <QComboBox>
+#include <QListView>
 
 #include "selfdrive/ui/ui.h"
 #include "selfdrive/ui/qt/util.h"
@@ -77,7 +77,8 @@ private:
   Params params;
   std::map<std::string, ParamControl*> toggles;
   ButtonParamControl *long_personality_setting;
-  QComboBox *car_type;
+
+  QListView *listView;
 
   void updateToggles();
 };
@@ -102,4 +103,15 @@ private:
 
   Params params;
   ParamWatcher *fs_watch;
+};
+
+class Carlist : public ListWidget {
+  Q_OBJECT
+public:
+  explicit Carlist(QWidget* parent = nullptr);
+
+private:
+//  void showEvent(QShowEvent *event) override;
+  void updateLabels(){};
+  void checkForUpdates(){};
 };
