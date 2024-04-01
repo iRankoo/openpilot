@@ -111,17 +111,6 @@
     </message>
 </context>
 <context>
-    <name>Carlist</name>
-    <message>
-        <source>DDDDD ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation type="unfinished">無法使用</translation>
-    </message>
-</context>
-<context>
     <name>ConfirmationDialog</name>
     <message>
         <source>Ok</source>
@@ -258,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">openpilot 需要將設備固定在左右偏差 4° 以內，朝上偏差 5° 以內或朝下偏差 9° 以內。鏡頭在後台會持續自動校準，很少有需要重設的情況。</translation>
+        <translation>openpilot 需要將設備固定在左右偏差 4° 以內，朝上偏差 5° 以內或朝下偏差 9° 以內。鏡頭在後台會持續自動校準，很少有需要重設的情況。</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> 你的設備目前朝%2 %1° 以及朝%4 %3° 。</translation>
+        <translation> 你的設備目前朝%2 %1° 以及朝%4 %3° 。</translation>
     </message>
     <message>
         <source>down</source>
@@ -315,14 +304,6 @@
     <message>
         <source>PAIR</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">openpilot 需要將設備固定在左右偏差 4° 以內，朝上偏差 5° 以內或朝下偏差 9° 以內。鏡頭在後台會持續自動校準，很少有需要重設的情況。 {4掳?} {5掳?} {9掳?}</translation>
-    </message>
-    <message>
-        <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> 你的設備目前朝%2 %1° 以及朝%4 %3° 。 {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -699,7 +680,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -716,14 +697,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>軟體</translation>
-    </message>
-    <message>
-        <source>脳</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Carlist</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -111,17 +111,6 @@
     </message>
 </context>
 <context>
-    <name>Carlist</name>
-    <message>
-        <source>DDDDD ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation type="unfinished">غير متاح</translation>
-    </message>
-</context>
-<context>
     <name>ConfirmationDialog</name>
     <message>
         <source>Ok</source>
@@ -258,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">يحتاج openpilot أن يتم ضبط الجهاز ضمن حدود 4 درجات يميناً أو يساراً و5 درجات نحو الأعلى أو 9 نحو الأسفل. يقوم openpilot بالمعايرة باستمرار، ونادراً ما يحتاج إلى عملية إعادة الضبط.</translation>
+        <translation>يحتاج openpilot أن يتم ضبط الجهاز ضمن حدود 4 درجات يميناً أو يساراً و5 درجات نحو الأعلى أو 9 نحو الأسفل. يقوم openpilot بالمعايرة باستمرار، ونادراً ما يحتاج إلى عملية إعادة الضبط.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> يشير جهازك إلى %1 درجة %2، و%3 درجة %4.</translation>
+        <translation> يشير جهازك إلى %1 درجة %2، و%3 درجة %4.</translation>
     </message>
     <message>
         <source>down</source>
@@ -315,14 +304,6 @@
     <message>
         <source>PAIR</source>
         <translation>إقران</translation>
-    </message>
-    <message>
-        <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">يحتاج openpilot أن يتم ضبط الجهاز ضمن حدود 4 درجات يميناً أو يساراً و5 درجات نحو الأعلى أو 9 نحو الأسفل. يقوم openpilot بالمعايرة باستمرار، ونادراً ما يحتاج إلى عملية إعادة الضبط. {4掳?} {5掳?} {9掳?}</translation>
-    </message>
-    <message>
-        <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> يشير جهازك إلى %1 درجة %2، و%3 درجة %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -515,23 +496,23 @@
     <name>OnroadAlerts</name>
     <message>
         <source>openpilot Unavailable</source>
-        <translation>openpilot غير متوفر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Waiting for controls to start</source>
-        <translation>في انتظار بدء عناصر التحكم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TAKE CONTROL IMMEDIATELY</source>
-        <translation>تحكم على الفور</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Controls Unresponsive</source>
-        <translation>الضوابط غير مستجيبة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reboot Device</source>
-        <translation>إعادة التشغيل</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -719,7 +700,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -736,14 +717,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>البرنامج</translation>
-    </message>
-    <message>
-        <source>脳</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Carlist</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
