@@ -9,6 +9,7 @@ from openpilot.common.swaglog import cloudlog
 from openpilot.selfdrive.modeld.constants import index_function
 from openpilot.selfdrive.car.interfaces import ACCEL_MIN
 from openpilot.selfdrive.controls.radard import _LEAD_ACCEL_TAU
+from openpilot.common.conversions import Conversions
 
 if __name__ == '__main__':  # generating code
   from openpilot.third_party.acados.acados_template import AcadosModel, AcadosOcp, AcadosOcpSolver
@@ -53,8 +54,8 @@ T_IDXS_LST = [index_function(idx, max_val=MAX_T, max_idx=N) for idx in range(N+1
 T_IDXS = np.array(T_IDXS_LST)
 FCW_IDXS = T_IDXS < 5.0
 T_DIFFS = np.diff(T_IDXS, prepend=[0.])
-COMFORT_BRAKE = 2.6
-STOP_DISTANCE = 5.1
+COMFORT_BRAKE = 2.5
+STOP_DISTANCE = 5.0
 
 def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
@@ -69,13 +70,29 @@ def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
 
 def get_T_FOLLOW(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
-    return 1.55
+    return 1.75
   elif personality==log.LongitudinalPersonality.standard:
-    return 1.25
+    return 1.45
   elif personality==log.LongitudinalPersonality.aggressive:
-    return 1.06
+    return 1.25
   else:
     raise NotImplementedError("Longitudinal personality not supported")
+
+#From dp
+def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.standard):
+  if personality==log.LongitudinalPersonality.relaxed:
+    x_vel =  [0.0,  2.8,   8.33,  13.90,  20,    25,    40]
+    y_dist = [1.2,  1.25,  1.60,  1.60,   2.00,  2.2,  2.4]
+  elif personality==log.LongitudinalPersonality.standard:
+    x_vel =  [0.0,  2.799, 2.8,   5.55,  5.56,  13.90,  20,    25,    40]
+    y_dist = [1.10, 1.10,  1.25,  1.25,  1.35,  1.30,   1.45,  1.5,  1.5]
+  elif personality==log.LongitudinalPersonality.aggressive:
+    x_vel =  [0.0,  1.999,  2.0,  13.89,  20,    25,  30,  40]
+    y_dist = [0.75, 0.75,   0.95, 0.92,   1.11,  1.16,  1.24, 1.5]
+  else:
+    raise NotImplementedError("Dynamic Follow personality not supported")
+
+  return np.interp(v_ego, x_vel, y_dist)
 
 def get_stopped_equivalence_factor(v_lead):
   return (v_lead**2) / (2 * COMFORT_BRAKE)
@@ -83,9 +100,22 @@ def get_stopped_equivalence_factor(v_lead):
 def get_safe_obstacle_distance(v_ego, t_follow):
   return (v_ego**2) / (2 * COMFORT_BRAKE) + t_follow * v_ego + STOP_DISTANCE
 
-def desired_follow_distance(v_ego, v_lead, t_follow=None):
+def desired_follow_distance(v_ego, v_lead, t_follow=None,personality=log.LongitudinalPersonality.standard):
   if t_follow is None:
     t_follow = get_T_FOLLOW()
+
+  t_follow = get_dynamic_follow(v_ego, personality)
+
+  # if t_follow < 1.25:
+  #   v_lead_KPH = Conversions.MS_TO_KPH*v_lead
+  #   v_ego_KPH = Conversions.MS_TO_KPH*v_ego
+  #   if v_lead_KPH <= 0:
+  #     v_lead_KPH = 1
+  #   if v_lead_KPH <= 5 and v_ego_KPH/v_lead_KPH > 3.1:
+  #     t_follow = 1.25
+
+  print("time = "+str(t_follow))
+
   return get_safe_obstacle_distance(v_ego, t_follow) - get_stopped_equivalence_factor(v_lead)
 
 
@@ -331,8 +361,9 @@ class LongitudinalMpc:
     self.max_a = max_a
 
   def update(self, radarstate, v_cruise, x, v, a, j, personality=log.LongitudinalPersonality.standard):
-    t_follow = get_T_FOLLOW(personality)
+#    t_follow = get_T_FOLLOW(personality)
     v_ego = self.x0[1]
+    t_follow = get_dynamic_follow(v_ego, personality)
     self.status = radarstate.leadOne.status or radarstate.leadTwo.status
 
     lead_xv_0 = self.process_lead(radarstate.leadOne)
