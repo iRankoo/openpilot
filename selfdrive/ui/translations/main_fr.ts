@@ -111,6 +111,17 @@
     </message>
 </context>
 <context>
+    <name>Carlist</name>
+    <message>
+        <source>DDDDD ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished">N/A</translation>
+    </message>
+</context>
+<context>
     <name>ConfirmationDialog</name>
     <message>
         <source>Ok</source>
@@ -255,11 +266,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation>openpilot nécessite que l&apos;appareil soit monté à 4° à gauche ou à droite et à 5° vers le haut ou 9° vers le bas. openpilot se calibre en continu, la réinitialisation est rarement nécessaire.</translation>
+        <translation type="vanished">openpilot nécessite que l&apos;appareil soit monté à 4° à gauche ou à droite et à 5° vers le haut ou 9° vers le bas. openpilot se calibre en continu, la réinitialisation est rarement nécessaire.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation> Votre appareil est orienté %1° %2 et %3° %4.</translation>
+        <translation type="vanished"> Votre appareil est orienté %1° %2 et %3° %4.</translation>
     </message>
     <message>
         <source>down</source>
@@ -304,6 +315,14 @@
     <message>
         <source>PAIR</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
+        <translation type="unfinished">openpilot nécessite que l&apos;appareil soit monté à 4° à gauche ou à droite et à 5° vers le haut ou 9° vers le bas. openpilot se calibre en continu, la réinitialisation est rarement nécessaire. {4掳?} {5掳?} {9掳?}</translation>
+    </message>
+    <message>
+        <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
+        <translation type="unfinished"> Votre appareil est orienté %1° %2 et %3° %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -684,7 +703,7 @@ Cela peut prendre jusqu&apos;à une minute.</translation>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation>×</translation>
+        <translation type="vanished">×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -701,6 +720,14 @@ Cela peut prendre jusqu&apos;à une minute.</translation>
     <message>
         <source>Software</source>
         <translation>Logiciel</translation>
+    </message>
+    <message>
+        <source>脳</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Carlist</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

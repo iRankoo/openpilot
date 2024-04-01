@@ -558,6 +558,19 @@ class Controls:
                    (not standstill or self.joystick_mode)
     CC.longActive = self.enabled and not self.events.contains(ET.OVERRIDE_LONGITUDINAL) and self.CP.openpilotLongitudinalControl
 
+    # Always LKA
+    if not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
+      if self.sm['liveCalibration'].calStatus != log.LiveCalibrationData.Status.calibrated:
+        pass
+      elif abs(CS.steeringAngleDeg) >= 450:
+        pass
+      elif CS.steerFaultTemporary or CS.steerFaultPermanent:
+        pass
+      elif CS.gearShifter == car.CarState.GearShifter.reverse:
+        pass
+      else:
+        CC.latActive = True
+
     actuators = CC.actuators
     actuators.longControlState = self.LoC.long_control_state
 
