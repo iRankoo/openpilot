@@ -553,6 +553,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
 
 Advance::Advance(QWidget* parent) : ListWidget(parent)
 {
+  setSpacing(30);
+
   auto dmBtn = new ParamControl("FpDeviceDmUnavailable", "Disable DM",
   "Disable driver monitor for ....I don't know why you do it,it's really dangerous.", "", this);
   addItem(dmBtn);

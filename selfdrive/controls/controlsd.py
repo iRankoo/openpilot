@@ -154,6 +154,8 @@ class Controls:
 
     self.startup_event = get_startup_event(car_recognized, not self.CP.passive, len(self.CP.carFw) > 0)
 
+    self.fp_alka = self.params.get_bool("FpLKA")
+
     if not sounds_available:
       self.events.add(EventName.soundsUnavailable, static=True)
     if not car_recognized:
@@ -559,6 +561,7 @@ class Controls:
     CC.longActive = self.enabled and not self.events.contains(ET.OVERRIDE_LONGITUDINAL) and self.CP.openpilotLongitudinalControl
 
     # Always LKA
+    #if self.fp_alka and not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
     if not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
       if self.sm['liveCalibration'].calStatus != log.LiveCalibrationData.Status.calibrated:
         pass
