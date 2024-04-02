@@ -109,13 +109,16 @@ private:
   ParamWatcher *fs_watch;
 };
 
-class Carlist : public ListWidget {
+class Advance : public ListWidget {
   Q_OBJECT
 public:
-  explicit Carlist(QWidget* parent = nullptr);
+  explicit Advance(QWidget* parent = nullptr);
 
 private:
 //  void showEvent(QShowEvent *event) override;
+
   void updateState(const UIState &s);
+
   void checkForUpdates(){};
+
 };

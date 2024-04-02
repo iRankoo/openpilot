@@ -489,7 +489,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
     {tr("Network"), new Networking(this)},
     {tr("Toggles"), toggles},
     {tr("Software"), new SoftwarePanel(this)},
-    {tr("Carlist"), new Carlist(this)},
+    {tr("Advance"), new Advance(this)},
   };
 
   nav_btns = new QButtonGroup(this);
@@ -551,7 +551,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   )");
 }
 
-Carlist::Carlist(QWidget* parent) : ListWidget(parent)
+Advance::Advance(QWidget* parent) : ListWidget(parent)
 {
   auto dmBtn = new ParamControl("FpDeviceDmUnavailable", "Disable DM",
   "Disable driver monitor for ....I don't know why you do it,it's really dangerous.", "", this);
@@ -567,10 +567,9 @@ auto lKABtn = new ParamControl("FpLKA", "LKA", "Lane keeping assistance.", "", t
   //   dmBtn->setEnabled(fp_device_dm_unavailable);
   // }
 
-  QObject::connect(uiState(), &UIState::uiUpdate, this, &Carlist::updateState);
+  QObject::connect(uiState(), &UIState::uiUpdate, this, &Advance::updateState);
 }
 
-void Carlist::updateState(const UIState &s)
+void Advance::updateState(const UIState &s)
 {
-
 }
