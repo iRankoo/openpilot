@@ -116,6 +116,6 @@ public:
 
 private:
 //  void showEvent(QShowEvent *event) override;
-  void updateLabels(){};
+  void updateState(const UIState &s);
   void checkForUpdates(){};
 };

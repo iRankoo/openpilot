@@ -175,7 +175,7 @@ void TogglesPanel::itemClicked(QModelIndex index){
   if (str.length() > 0)
   {
       this->carBtn->setText(index.data().toString());
-      params.put("FpFingerPrint",  index.data().toString().toStdString() );  
+      params.put("FpFingerPrint",  index.data().toString().toStdString() );
   }
 
    qDebug() << index.data().toString();
@@ -278,7 +278,7 @@ void TogglesPanel::updateToggles() {
   }
 
   auto fp_bytes= params.get("FpFingerPrint");
-  if (!fp_bytes.empty()) 
+  if (!fp_bytes.empty())
   {
       this->carBtn->setText(fp_bytes.c_str());
   }
@@ -458,7 +458,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   panel_widget = new QStackedWidget();
 
   // close button
-  QPushButton *close_btn = new QPushButton(tr("脳"));
+  QPushButton *close_btn = new QPushButton(tr("x"));
   close_btn->setStyleSheet(R"(
     QPushButton {
       font-size: 140px;
@@ -553,5 +553,24 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
 
 Carlist::Carlist(QWidget* parent) : ListWidget(parent)
 {
-    addItem(new LabelControl(tr("DDDDD ID"), getDongleId().value_or(tr("N/A"))));
+  auto dmBtn = new ParamControl("FpDeviceDmUnavailable", "Disable DM",
+  "Disable driver monitor for ....I don't know why you do it,it's really dangerous.", "", this);
+  addItem(dmBtn);
+
+auto lKABtn = new ParamControl("FpLKA", "LKA", "Lane keeping assistance.", "", this);
+  addItem(lKABtn);
+
+
+  // bool fp_device_dm_unavailable = params.getBool("FpDeviceDmUnavailable");
+  // if (fp_device_dm_unavailable)
+  // {
+  //   dmBtn->setEnabled(fp_device_dm_unavailable);
+  // }
+
+  QObject::connect(uiState(), &UIState::uiUpdate, this, &Carlist::updateState);
+}
+
+void Carlist::updateState(const UIState &s)
+{
+
 }

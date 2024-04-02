@@ -130,14 +130,14 @@ def manager_thread() -> None:
   ignore += [x for x in os.getenv("BLOCK", "").split(",") if len(x) > 0]
 
   #params.put_bool("dp_device_is_clone", dp_device_is_clone)
-  dp_device_dm_unavailable = params.get_bool("FpDeviceDmUnavailable")
-  if dp_device_dm_unavailable:
+  fp_device_dm_unavailable = params.get_bool("FpDeviceDmUnavailable")
+  if fp_device_dm_unavailable:
     ignore += ["uploader", "dmonitoringd", "dmonitoringmodeld"]
   elif dp_device_is_clone:
     ignore += ["uploader", "dpdmonitoringd"]
   else:
     ignore += ["dpdmonitoringd"]
-  
+
   sm = messaging.SubMaster(['deviceState', 'carParams'], poll='deviceState')
   pm = messaging.PubMaster(['managerState'])
 
