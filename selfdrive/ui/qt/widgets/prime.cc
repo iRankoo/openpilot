@@ -269,15 +269,15 @@ void SetupWidget::replyFinished(const QString &response, bool success) {
   }
 
   QJsonObject json = doc.object();
-  PrimeType prime_type = static_cast<PrimeType>(json["prime_type"].toInt());
-  uiState()->setPrimeType(prime_type);
+ // PrimeType prime_type = static_cast<PrimeType>(json["prime_type"].toInt());
+  uiState()->setPrimeType(/*prime_type*/PrimeType::PURPLE);
 
   if (!json["is_paired"].toBool()) {
     mainLayout->setCurrentIndex(0);
   } else {
     popup->reject();
 
-    primeUser->setVisible(prime_type);
+    primeUser->setVisible(/*prime_type*/PrimeType::PURPLE);
     mainLayout->setCurrentIndex(1);
   }
 }
