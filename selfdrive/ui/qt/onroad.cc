@@ -1,3 +1,7 @@
+#ifndef ENABLE_MAPS
+#define ENABLE_MAPS
+#endif
+
 #include "selfdrive/ui/qt/onroad.h"
 
 #include <algorithm>
