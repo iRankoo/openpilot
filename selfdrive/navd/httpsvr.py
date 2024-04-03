@@ -18,9 +18,9 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         print(self.path)
         if self.path=="/":
-            self.path="../nav/nav.html"
+            self.path="/data/openpilot/selfdrive/navd/nav.html"
         elif self.path=="/nav":
-            self.path="../nav/nav.html"
+            self.path="/data/openpilot/selfdrive/navd/nav.html"
 
         try:
             #Check the file extension required and
