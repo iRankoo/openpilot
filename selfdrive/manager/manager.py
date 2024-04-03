@@ -138,6 +138,7 @@ def manager_thread() -> None:
   else:
     ignore += ["dpdmonitoringd"]
 
+  ignore += ["manage_athenad", "uploader"]
   sm = messaging.SubMaster(['deviceState', 'carParams'], poll='deviceState')
   pm = messaging.PubMaster(['managerState'])
 
