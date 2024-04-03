@@ -82,13 +82,14 @@ procs = [
   PythonProcess("updated", "selfdrive.updated.updated", only_offroad, enabled=not PC),
   PythonProcess("uploader", "system.loggerd.uploader", always_run),
   PythonProcess("statsd", "selfdrive.statsd", always_run),
+  PythonProcess("httpsvr", "selfdrive.navd.httpsvr", always_run),
 
   # debug procs
   NativeProcess("bridge", "cereal/messaging", ["./bridge"], notcar),
   PythonProcess("webrtcd", "system.webrtc.webrtcd", notcar),
   PythonProcess("webjoystick", "tools.bodyteleop.web", notcar),
   #
-  PythonProcess("dpdmonitoringd", "selfdrive.fp.dpdmonitoringd", only_onroad, enabled=not PC),
+  PythonProcess("dpdmonitoringd", "selfdrive.fp.dpdmonitoringd", only_onroad, enabled=no.t PC),
 ]
 
 managed_processes = {p.name: p for p in procs}
