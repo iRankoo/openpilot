@@ -18,9 +18,9 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         print(self.path)
         if self.path=="/":
-            self.path="./nav.html"
+            self.path="../nav/nav.html"
         elif self.path=="/nav":
-            self.path="./nav.html"
+            self.path="../nav/nav.html"
 
         try:
             #Check the file extension required and
