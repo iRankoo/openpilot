@@ -45,9 +45,7 @@ class myHandler(BaseHTTPRequestHandler):
 
             if sendReply == True:
                 #Open the static file requested and send it
-                f = open(curdir + sep + self.path)
-                print(curdir)
-                print(sep)
+                f = open(self.path)
                 print(self.path)
 
                 self.send_response(200)
