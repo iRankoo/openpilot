@@ -354,6 +354,11 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   speed = cs_alive ? std::max<float>(0.0, v_ego) : 0.0;
   speed *= s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
 
+  // lead speed
+ auto radar_state = sm["radarState"].getRadarState();
+  auto lead_one = radar_state.getLeadOne();
+  leadSpeed = lead_data.getVRel();
+  leadDistance = lead_one.getDRel();
   leadSpeed = std::max<float>(0.0, leadSpeed);
   leadSpeed *= s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
 
@@ -632,8 +637,6 @@ void AnnotatedCameraWidget::drawLead(QPainter &painter, const cereal::RadarState
   const float leadBuff = 40.;
   const float d_rel = lead_data.getDRel();
   const float v_rel = lead_data.getVRel();
-
-  leadSpeed = v_rel;
 
   float fillAlpha = 0;
   if (d_rel < leadBuff) {
