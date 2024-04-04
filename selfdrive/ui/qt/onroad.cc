@@ -486,7 +486,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   drawText(p, rect().center().x(), 290, speedUnit, 200);
 
   //lead speed distance
-  QString leadSpeedDistance = QString::number(std::nearbyint(leadSpeed)) + " / " + QString::number(leadDistance);
+  QString leadSpeedDistance = QString::number(std::nearbyint(leadSpeed)) + " / " + QString::number(leadDistance, 'f', 2);
   p.setFont(InterFont(66));
   drawText(p, rect().center().x(), 380, leadSpeedDistance, 200);
 
