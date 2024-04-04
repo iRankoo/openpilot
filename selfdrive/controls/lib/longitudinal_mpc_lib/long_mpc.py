@@ -10,6 +10,7 @@ from openpilot.selfdrive.modeld.constants import index_function
 from openpilot.selfdrive.car.interfaces import ACCEL_MIN
 from openpilot.selfdrive.controls.radard import _LEAD_ACCEL_TAU
 from openpilot.common.conversions import Conversions
+from openpilot.common.params import Params
 
 if __name__ == '__main__':  # generating code
   from openpilot.third_party.acados.acados_template import AcadosModel, AcadosOcp, AcadosOcpSolver
@@ -57,6 +58,8 @@ T_DIFFS = np.diff(T_IDXS, prepend=[0.])
 COMFORT_BRAKE = 2.5
 STOP_DISTANCE = 5.0
 
+_dynamic_follow = Params().get_bool("FpDynamicFollow")
+
 def get_jerk_factor(personality=log.LongitudinalPersonality.standard):
   if personality==log.LongitudinalPersonality.relaxed:
     return 1.0
@@ -74,12 +77,15 @@ def get_T_FOLLOW(personality=log.LongitudinalPersonality.standard):
   elif personality==log.LongitudinalPersonality.standard:
     return 1.45
   elif personality==log.LongitudinalPersonality.aggressive:
-    return 1.25
+    return 1.11
   else:
     raise NotImplementedError("Longitudinal personality not supported")
 
 #From dp
 def get_dynamic_follow(v_ego, personality=log.LongitudinalPersonality.standard):
+  if not _dynamic_follow:
+    return get_T_FOLLOW(personality)
+
   if personality==log.LongitudinalPersonality.relaxed:
     x_vel =  [0.0,  2.8,   8.33,  13.90,  20,    25,    40]
     y_dist = [1.2,  1.25,  1.60,  1.60,   2.00,  2.2,  2.4]
@@ -363,6 +369,7 @@ class LongitudinalMpc:
   def update(self, radarstate, v_cruise, x, v, a, j, personality=log.LongitudinalPersonality.standard):
 #    t_follow = get_T_FOLLOW(personality)
     v_ego = self.x0[1]
+
     t_follow = get_dynamic_follow(v_ego, personality)
     self.status = radarstate.leadOne.status or radarstate.leadTwo.status
 
