@@ -563,15 +563,12 @@ Advance::Advance(QWidget* parent) : ListWidget(parent)
   "Disable driver monitor for ....I don't know why you do it,it's really dangerous.", "", this);
   addItem(dmBtn);
 
-auto lKABtn = new ParamControl("FpLKA", "LKA", "Lane keeping assistance.", "", this);
+  auto lKABtn = new ParamControl("FpLKA", "LKA", "Lane keeping assistance.", "", this);
   addItem(lKABtn);
 
+  auto dyfBtn = new ParamControl("FpDynamicFollow", "Dynamic Following", "Dynamic Follow the front vehicle in different speed.", "", this);
+  addItem(dyfBtn);
 
-  // bool fp_device_dm_unavailable = params.getBool("FpDeviceDmUnavailable");
-  // if (fp_device_dm_unavailable)
-  // {
-  //   dmBtn->setEnabled(fp_device_dm_unavailable);
-  // }
 
   QObject::connect(uiState(), &UIState::uiUpdate, this, &Advance::updateState);
 }
