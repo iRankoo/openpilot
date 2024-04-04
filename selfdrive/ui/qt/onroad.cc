@@ -357,7 +357,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   // lead speed
  auto radar_state = sm["radarState"].getRadarState();
   auto lead_one = radar_state.getLeadOne();
-  leadSpeed = lead_data.getVRel();
+  leadSpeed = lead_one.getVRel();
   leadDistance = lead_one.getDRel();
   leadSpeed = std::max<float>(0.0, leadSpeed);
   leadSpeed *= s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
