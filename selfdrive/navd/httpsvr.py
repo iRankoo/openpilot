@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #Created by iRankoo
 
+import threading
 import requests
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import curdir, sep
@@ -17,9 +18,9 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         print(self.path)
         if self.path=="/":
-            self.path="./nav.html"
+            self.path="/data/openpilot/selfdrive/navd/nav.html"
         elif self.path=="/nav":
-            self.path="./nav.html"
+            self.path="/data/openpilot/selfdrive/navd/nav.html"
 
         try:
             #Check the file extension required and
@@ -44,11 +45,9 @@ class myHandler(BaseHTTPRequestHandler):
 
             if sendReply == True:
                 #Open the static file requested and send it
-                f = open(curdir + sep + self.path)
-                print(curdir)
-                print(sep)
+                f = open(self.path)
                 print(self.path)
-                
+
                 self.send_response(200)
                 self.send_header('Content-type',mimetype)
                 self.end_headers()
@@ -71,8 +70,8 @@ class myHandler(BaseHTTPRequestHandler):
                          'CONTENT_TYPE':self.headers['Content-Type'],
             })
 
-            
-            try:        
+
+            try:
                 print ("Map url is: %s" % form["nav_url"].value)
             except:
                 self.send_response(200)
@@ -81,13 +80,13 @@ class myHandler(BaseHTTPRequestHandler):
                 byte_data = buf.encode('utf-8')
                 self.wfile.write(byte_data)
                 return
-            
+
             map_rul = form["nav_url"].value
             lat, lng = getLatNLng(map_rul)
             if lat == None:
                 url = getRedirectUrl(map_rul)
                 lat, lng = getLatNLng_Amap(url)
-               
+
             if lat==None or lng==None:
                 self.send_response(200)
                 self.end_headers()
@@ -156,23 +155,32 @@ def writeParam(lat,lng):
     "time": 0,
     "latitude": float(lat),
     "longitude": float(lng)
-    } 
-    
+    }
+
     jsn = json.dumps(data)
     print(jsn)
-    
+
     params = Params()
     params.put("NavDestination", jsn)
 
-try:
-    #Create a web server and define the handler to manage the
-    #incoming request
-    server = HTTPServer(('', PORT_NUMBER), myHandler)
-    print ('Started httpserver on port ' , PORT_NUMBER)
+def threadHttp():
+    try:
+        #Create a web server and define the handler to manage the
+        #incoming request
+        server = HTTPServer(('', PORT_NUMBER), myHandler)
+        print ('Started httpserver on port ' , PORT_NUMBER)
 
-    #Wait forever for incoming htto requests
-    server.serve_forever()
+        #Wait forever for incoming htto requests
+        server.serve_forever()
 
-except KeyboardInterrupt:
-    print ('^C received, shutting down the web server')
-    server.socket.close()
+    except KeyboardInterrupt:
+        print ('^C received, shutting down the web server')
+        server.socket.close()
+
+def main():
+    t = threading.Thread(target=threadHttp)
+    t.start()
+    t.join()
+
+if __name__ == "__main__":
+  main()
