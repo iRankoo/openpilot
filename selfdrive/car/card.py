@@ -50,9 +50,13 @@ class CarD:
 
     # set alternative experiences from parameters
     disengage_on_accelerator = self.params.get_bool("DisengageOnAccelerator")
+    fp_alka = self.params.get_bool("FpLKA")
     self.CP.alternativeExperience = 0
     if not disengage_on_accelerator:
       self.CP.alternativeExperience |= ALTERNATIVE_EXPERIENCE.DISABLE_DISENGAGE_ON_GAS
+
+    if fp_alka:
+      self.CP.alternativeExperience |= ALTERNATIVE_EXPERIENCE.ALKA
 
     car_recognized = self.CP.carName != 'mock'
     openpilot_enabled_toggle = self.params.get_bool("OpenpilotEnabledToggle")
