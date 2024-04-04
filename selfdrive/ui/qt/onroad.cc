@@ -633,7 +633,7 @@ void AnnotatedCameraWidget::drawLead(QPainter &painter, const cereal::RadarState
   const float d_rel = lead_data.getDRel();
   const float v_rel = lead_data.getVRel();
 
-  leadSpeed = v_rel
+  leadSpeed = v_rel;
 
   float fillAlpha = 0;
   if (d_rel < leadBuff) {
