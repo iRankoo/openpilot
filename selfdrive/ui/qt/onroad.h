@@ -119,6 +119,8 @@ private:
   //lead speed,lead distance
   float leadSpeed;
   float leadDistance;
+  //engine RPM
+  int engineRPM;
 
 protected:
   void paintGL() override;
