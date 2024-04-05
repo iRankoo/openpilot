@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">openpilotの本体は、左右4°以内、上5°、下9°以内の角度で取付ける必要があります。継続してキャリブレーションを続けているので、手動でリセットを行う必要はほぼありません。</translation>
+        <translation>openpilotの本体は、左右4°以内、上5°、下9°以内の角度で取付ける必要があります。継続してキャリブレーションを続けているので、手動でリセットを行う必要はほぼありません。</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> このデバイスは%2 %1°、%4 %3°の向きに設置されています。</translation>
+        <translation> このデバイスは%2 %1°、%4 %3°の向きに設置されています。</translation>
     </message>
     <message>
         <source>down</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">openpilotの本体は、左右4°以内、上5°、下9°以内の角度で取付ける必要があります。継続してキャリブレーションを続けているので、手動でリセットを行う必要はほぼありません。 {4掳?} {5掳?} {9掳?}</translation>
+        <translation type="obsolete">openpilotの本体は、左右4°以内、上5°、下9°以内の角度で取付ける必要があります。継続してキャリブレーションを続けているので、手動でリセットを行う必要はほぼありません。 {4掳?} {5掳?} {9掳?}</translation>
     </message>
     <message>
         <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> このデバイスは%2 %1°、%4 %3°の向きに設置されています。 {1掳?} {2 ?} {3掳?} {4.?}</translation>
+        <translation type="obsolete"> このデバイスは%2 %1°、%4 %3°の向きに設置されています。 {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -686,7 +686,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -703,10 +703,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>ｿﾌﾄｳｪｱ</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Advance</source>

@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">O openpilot requer que o dispositivo seja montado dentro de 4° esquerda ou direita e dentro de 5° para cima ou 9° para baixo. O openpilot está continuamente calibrando, resetar raramente é necessário.</translation>
+        <translation>O openpilot requer que o dispositivo seja montado dentro de 4° esquerda ou direita e dentro de 5° para cima ou 9° para baixo. O openpilot está continuamente calibrando, resetar raramente é necessário.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> Seu dispositivo está montado %1° %2 e %3° %4.</translation>
+        <translation> Seu dispositivo está montado %1° %2 e %3° %4.</translation>
     </message>
     <message>
         <source>down</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">O openpilot requer que o dispositivo seja montado dentro de 4° esquerda ou direita e dentro de 5° para cima ou 9° para baixo. O openpilot está continuamente calibrando, resetar raramente é necessário. {4掳?} {5掳?} {9掳?}</translation>
+        <translation type="obsolete">O openpilot requer que o dispositivo seja montado dentro de 4° esquerda ou direita e dentro de 5° para cima ou 9° para baixo. O openpilot está continuamente calibrando, resetar raramente é necessário. {4掳?} {5掳?} {9掳?}</translation>
     </message>
     <message>
         <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> Seu dispositivo está montado %1° %2 e %3° %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
+        <translation type="obsolete"> Seu dispositivo está montado %1° %2 e %3° %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -692,7 +692,7 @@ Isso pode levar até um minuto.</translation>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -709,10 +709,6 @@ Isso pode levar até um minuto.</translation>
     <message>
         <source>Software</source>
         <translation>Software</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Advance</source>

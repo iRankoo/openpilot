@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">openpilot กำหนดให้ติดตั้งอุปกรณ์ โดยสามารถเอียงด้านซ้ายหรือขวาไม่เกิน 4° และเอียงขึ้นด้านบนไม่เกิน 5° หรือเอียงลงด้านล่างไม่เกิน 9° openpilot ทำการคาลิเบรทอย่างต่อเนื่อง แทบจะไม่จำเป็นต้องทำการรีเซ็ตการคาลิเบรท</translation>
+        <translation>openpilot กำหนดให้ติดตั้งอุปกรณ์ โดยสามารถเอียงด้านซ้ายหรือขวาไม่เกิน 4° และเอียงขึ้นด้านบนไม่เกิน 5° หรือเอียงลงด้านล่างไม่เกิน 9° openpilot ทำการคาลิเบรทอย่างต่อเนื่อง แทบจะไม่จำเป็นต้องทำการรีเซ็ตการคาลิเบรท</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> อุปกรณ์ของคุณเอียงไปทาง %2 %1° และ %4 %3°</translation>
+        <translation> อุปกรณ์ของคุณเอียงไปทาง %2 %1° และ %4 %3°</translation>
     </message>
     <message>
         <source>down</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">openpilot กำหนดให้ติดตั้งอุปกรณ์ โดยสามารถเอียงด้านซ้ายหรือขวาไม่เกิน 4° และเอียงขึ้นด้านบนไม่เกิน 5° หรือเอียงลงด้านล่างไม่เกิน 9° openpilot ทำการคาลิเบรทอย่างต่อเนื่อง แทบจะไม่จำเป็นต้องทำการรีเซ็ตการคาลิเบรท {4掳?} {5掳?} {9掳?}</translation>
+        <translation type="obsolete">openpilot กำหนดให้ติดตั้งอุปกรณ์ โดยสามารถเอียงด้านซ้ายหรือขวาไม่เกิน 4° และเอียงขึ้นด้านบนไม่เกิน 5° หรือเอียงลงด้านล่างไม่เกิน 9° openpilot ทำการคาลิเบรทอย่างต่อเนื่อง แทบจะไม่จำเป็นต้องทำการรีเซ็ตการคาลิเบรท {4掳?} {5掳?} {9掳?}</translation>
     </message>
     <message>
         <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> อุปกรณ์ของคุณเอียงไปทาง %2 %1° และ %4 %3° {1掳?} {2 ?} {3掳?} {4.?}</translation>
+        <translation type="obsolete"> อุปกรณ์ของคุณเอียงไปทาง %2 %1° และ %4 %3° {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -688,7 +688,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -705,10 +705,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>ซอฟต์แวร์</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Advance</source>

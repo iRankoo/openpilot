@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">openpilot, cihazın 4° sola veya 5° yukarı yada 9° aşağı bakıcak şekilde monte edilmesi gerekmektedir. openpilot sürekli kendisini kalibre edilmektedir ve nadiren sıfırlama gerebilir.</translation>
+        <translation>openpilot, cihazın 4° sola veya 5° yukarı yada 9° aşağı bakıcak şekilde monte edilmesi gerekmektedir. openpilot sürekli kendisini kalibre edilmektedir ve nadiren sıfırlama gerebilir.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> Cihazınız %1° %2 ve %3° %4 yönünde ayarlı</translation>
+        <translation> Cihazınız %1° %2 ve %3° %4 yönünde ayarlı</translation>
     </message>
     <message>
         <source>down</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">openpilot, cihazın 4° sola veya 5° yukarı yada 9° aşağı bakıcak şekilde monte edilmesi gerekmektedir. openpilot sürekli kendisini kalibre edilmektedir ve nadiren sıfırlama gerebilir. {4掳?} {5掳?} {9掳?}</translation>
+        <translation type="obsolete">openpilot, cihazın 4° sola veya 5° yukarı yada 9° aşağı bakıcak şekilde monte edilmesi gerekmektedir. openpilot sürekli kendisini kalibre edilmektedir ve nadiren sıfırlama gerebilir. {4掳?} {5掳?} {9掳?}</translation>
     </message>
     <message>
         <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> Cihazınız %1° %2 ve %3° %4 yönünde ayarlı {1掳?} {2 ?} {3掳?} {4.?}</translation>
+        <translation type="obsolete"> Cihazınız %1° %2 ve %3° %4 yönünde ayarlı {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -686,7 +686,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">x</translation>
+        <translation>x</translation>
     </message>
     <message>
         <source>Device</source>
@@ -703,10 +703,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>Yazılım</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Advance</source>

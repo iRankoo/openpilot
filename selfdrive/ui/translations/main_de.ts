@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="vanished">Damit Openpilot funktioniert, darf die Installationsposition nicht mehr als 4° nach rechts/links, 5° nach oben und 9° nach unten abweichen. Openpilot kalibriert sich durchgehend, ein Zurücksetzen ist selten notwendig.</translation>
+        <translation>Damit Openpilot funktioniert, darf die Installationsposition nicht mehr als 4° nach rechts/links, 5° nach oben und 9° nach unten abweichen. Openpilot kalibriert sich durchgehend, ein Zurücksetzen ist selten notwendig.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="vanished"> Deine Geräteausrichtung ist %1° %2 und %3° %4.</translation>
+        <translation> Deine Geräteausrichtung ist %1° %2 und %3° %4.</translation>
     </message>
     <message>
         <source>down</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4掳 left or right and within 5掳 up or 9掳 down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="unfinished">Damit Openpilot funktioniert, darf die Installationsposition nicht mehr als 4° nach rechts/links, 5° nach oben und 9° nach unten abweichen. Openpilot kalibriert sich durchgehend, ein Zurücksetzen ist selten notwendig. {4掳?} {5掳?} {9掳?}</translation>
+        <translation type="obsolete">Damit Openpilot funktioniert, darf die Installationsposition nicht mehr als 4° nach rechts/links, 5° nach oben und 9° nach unten abweichen. Openpilot kalibriert sich durchgehend, ein Zurücksetzen ist selten notwendig. {4掳?} {5掳?} {9掳?}</translation>
     </message>
     <message>
         <source> Your device is pointed %1掳 %2 and %3掳 %4.</source>
-        <translation type="unfinished"> Deine Geräteausrichtung ist %1° %2 und %3° %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
+        <translation type="obsolete"> Deine Geräteausrichtung ist %1° %2 und %3° %4. {1掳?} {2 ?} {3掳?} {4.?}</translation>
     </message>
 </context>
 <context>
@@ -690,7 +690,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">x</translation>
+        <translation>x</translation>
     </message>
     <message>
         <source>Device</source>
@@ -707,10 +707,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>Software</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Advance</source>
