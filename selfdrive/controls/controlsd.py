@@ -154,7 +154,7 @@ class Controls:
 
     self.startup_event = get_startup_event(car_recognized, not self.CP.passive, len(self.CP.carFw) > 0)
 
-    self.fp_alka = self.params.get_bool("FpLKA")
+    self.fp_alka = False
 
     if not sounds_available:
       self.events.add(EventName.soundsUnavailable, static=True)
@@ -860,7 +860,7 @@ class Controls:
       if self.CP.notCar:
         self.joystick_mode = self.params.get_bool("JoystickDebugMode")
 
-      self.fp_alka = self.params.get_bool("FpLKA")
+      self.fp_alka = self.card.fp_alka
       time.sleep(0.1)
 
   def controlsd_thread(self):
