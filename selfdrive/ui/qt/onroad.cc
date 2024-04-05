@@ -357,7 +357,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   // lead speed
  auto radar_state = sm["radarState"].getRadarState();
   auto lead_one = radar_state.getLeadOne();
-  leadSpeed = lead_one.getVRel();
+  leadSpeed = lead_one.getVLead();
   leadDistance = lead_one.getDRel();
   leadSpeed = std::max<float>(0.0, leadSpeed);
   leadSpeed *= s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
@@ -486,7 +486,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   drawText(p, rect().center().x(), 290, speedUnit, 200);
 
   //lead speed distance
-  QString leadSpeedDistance = QString::number(std::nearbyint(leadSpeed)) + " / " + QString::number(leadDistance);
+  QString leadSpeedDistance = QString::number(std::nearbyint(leadSpeed)) + " / " + QString::number(leadDistance, 'f', 2);
   p.setFont(InterFont(66));
   drawText(p, rect().center().x(), 380, leadSpeedDistance, 200);
 
