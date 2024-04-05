@@ -160,6 +160,7 @@ def writeParam(lat,lng):
     jsn = json.dumps(data)
     print(jsn)
 
+
     params = Params()
     params.put("NavDestination", jsn)
 
