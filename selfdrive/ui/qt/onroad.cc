@@ -495,7 +495,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
 
   //engine RPM
   QString engineRPMStr  = QString::number(engineRPM);
-  p.setFont(InterFont(33));
+  p.setFont(InterFont(43));
   drawText(p, rect().center().x()*2-120, 380, engineRPMStr, 200);
 
   p.restore();
