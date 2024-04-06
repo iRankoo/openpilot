@@ -139,6 +139,9 @@ def manager_thread() -> None:
     ignore += ["dpdmonitoringd"]
 
   ignore += ["manage_athenad", "uploader"]
+  if not params.get_bool("FpAliYunDrive"):
+    ignore += ["aliyun"]
+
   sm = messaging.SubMaster(['deviceState', 'carParams'], poll='deviceState')
   pm = messaging.PubMaster(['managerState'])
 
