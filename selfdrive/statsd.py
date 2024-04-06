@@ -86,15 +86,15 @@ def main() -> NoReturn:
   # initialize stats directory
   Path(STATS_DIR).mkdir(parents=True, exist_ok=True)
 
-#  build_metadata = get_build_metadata()
+  build_metadata = get_build_metadata()
 
   # initialize tags
   tags = {
     'started': False,
-    'version':  Params().get("Version", encoding='utf-8'),
-    'branch':  Params().get("GitBranch", encoding='utf-8'),
-#    'dirty': build_metadata.openpilot.is_dirty,
-#    'origin': build_metadata.openpilot.git_normalized_origin,
+    'version': build_metadata.openpilot.version,
+    'branch': build_metadata.channel,
+    'dirty': build_metadata.openpilot.is_dirty,
+    'origin': build_metadata.openpilot.git_normalized_origin,
     'deviceType': HARDWARE.get_device_type(),
   }
 

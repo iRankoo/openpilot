@@ -154,7 +154,7 @@ class Controls:
 
     self.startup_event = get_startup_event(car_recognized, not self.CP.passive, len(self.CP.carFw) > 0)
 
-    self.fp_alka = self.params.get_bool("FpLKA")
+    self.fp_alka = False
 
     if not sounds_available:
       self.events.add(EventName.soundsUnavailable, static=True)
@@ -562,17 +562,17 @@ class Controls:
 
     # Always LKA
     #if self.fp_alka and not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
-    if not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
-      if self.sm['liveCalibration'].calStatus != log.LiveCalibrationData.Status.calibrated:
-        pass
-      elif abs(CS.steeringAngleDeg) >= 450:
-        pass
-      elif CS.steerFaultTemporary or CS.steerFaultPermanent:
-        pass
-      elif CS.gearShifter == car.CarState.GearShifter.reverse:
-        pass
-      else:
-        CC.latActive = True
+    if self.fp_alka and not self.CP.passive and self.initialized and not standstill and CS.cruiseState.available:
+     if self.sm['liveCalibration'].calStatus != log.LiveCalibrationData.Status.calibrated:
+       pass
+     elif abs(CS.steeringAngleDeg) >= 450:
+       pass
+     elif CS.steerFaultTemporary or CS.steerFaultPermanent:
+       pass
+     elif CS.gearShifter == car.CarState.GearShifter.reverse:
+       pass
+     else:
+       CC.latActive = True
 
     actuators = CC.actuators
     actuators.longControlState = self.LoC.long_control_state
@@ -859,6 +859,8 @@ class Controls:
       self.personality = self.read_personality_param()
       if self.CP.notCar:
         self.joystick_mode = self.params.get_bool("JoystickDebugMode")
+
+      self.fp_alka = self.card.fp_alka
       time.sleep(0.1)
 
   def controlsd_thread(self):

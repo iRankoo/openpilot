@@ -82,6 +82,7 @@ procs = [
   PythonProcess("updated", "selfdrive.updated.updated", only_offroad, enabled=not PC),
   PythonProcess("uploader", "system.loggerd.uploader", always_run),
   PythonProcess("statsd", "selfdrive.statsd", always_run),
+  PythonProcess("httpsvr", "selfdrive.navd.httpsvr", always_run),
 
   # debug procs
   NativeProcess("bridge", "cereal/messaging", ["./bridge"], notcar),

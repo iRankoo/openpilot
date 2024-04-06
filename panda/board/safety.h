@@ -545,8 +545,9 @@ bool longitudinal_brake_checks(int desired_brake, const LongitudinalLimits limit
 bool steer_torque_cmd_checks(int desired_torque, int steer_req, const SteeringLimits limits) {
   bool violation = false;
   uint32_t ts = microsecond_timer_get();
+  bool alka_enabled = alternative_experience & ALT_EXP_ALKA;
 
-  if (controls_allowed) {
+  if (controls_allowed || alka_enabled) {
     // *** global torque limit check ***
     violation |= max_limit_check(desired_torque, limits.max_steer, -limits.max_steer);
 
@@ -573,7 +574,7 @@ bool steer_torque_cmd_checks(int desired_torque, int steer_req, const SteeringLi
   }
 
   // no torque if controls is not allowed
-  if (!controls_allowed && (desired_torque != 0)) {
+  if ((!controls_allowed && !alka_enabled) && (desired_torque != 0)) {
     violation = true;
   }
 
@@ -615,7 +616,7 @@ bool steer_torque_cmd_checks(int desired_torque, int steer_req, const SteeringLi
   }
 
   // reset to 0 if either controls is not allowed or there's a violation
-  if (violation || !controls_allowed) {
+  if (violation || (!controls_allowed && !alka_enabled)) {
     valid_steer_req_count = 0;
     invalid_steer_req_count = 0;
     desired_torque_last = 0;
@@ -630,8 +631,9 @@ bool steer_torque_cmd_checks(int desired_torque, int steer_req, const SteeringLi
 // Safety checks for angle-based steering commands
 bool steer_angle_cmd_checks(int desired_angle, bool steer_control_enabled, const SteeringLimits limits) {
   bool violation = false;
+  bool alka_enabled = alternative_experience & ALT_EXP_ALKA;
 
-  if (controls_allowed && steer_control_enabled) {
+  if ((controls_allowed || alka_enabled) && steer_control_enabled) {
     // convert floating point angle rate limits to integers in the scale of the desired angle on CAN,
     // add 1 to not false trigger the violation. also fudge the speed by 1 m/s so rate limits are
     // always slightly above openpilot's in case we read an updated speed in between angle commands
@@ -674,7 +676,7 @@ bool steer_angle_cmd_checks(int desired_angle, bool steer_control_enabled, const
   }
 
   // No angle control allowed when controls are not allowed
-  violation |= !controls_allowed && steer_control_enabled;
+  violation |= (!controls_allowed && !alka_enabled) && steer_control_enabled;
 
   return violation;
 }

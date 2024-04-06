@@ -116,6 +116,12 @@ private:
   int skip_frame_count = 0;
   bool wide_cam_requested = false;
 
+  //lead speed,lead distance
+  float leadSpeed;
+  float leadDistance;
+  //engine RPM
+  int engineRPM;
+
 protected:
   void paintGL() override;
   void initializeGL() override;
