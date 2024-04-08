@@ -245,6 +245,12 @@ def main(demo=False):
     nav_valid = sm.valid["navModel"] # and (nanos_since_boot() - timestamp_llk < 1e9)
     nav_enabled = nav_valid and params.get_bool("ExperimentalMode")
 
+    with open("/data/media/log.txt", 'w') as f:
+      f.write("nav_valid  ")
+      f.write(nav_valid)
+      f.write(" nav_enabled  ")
+      f.write(nav_enabled)
+
     if not nav_enabled:
       nav_features[:] = 0
       nav_instructions[:] = 0

@@ -2,6 +2,7 @@
 import math
 import numpy as np
 from openpilot.common.numpy_fast import clip, interp
+from openpilot.common.params import Params
 
 import cereal.messaging as messaging
 from openpilot.common.conversions import Conversions as CV
@@ -14,6 +15,7 @@ from openpilot.selfdrive.controls.lib.longitudinal_mpc_lib.long_mpc import Longi
 from openpilot.selfdrive.controls.lib.longitudinal_mpc_lib.long_mpc import T_IDXS as T_IDXS_MPC
 from openpilot.selfdrive.controls.lib.drive_helpers import V_CRUISE_MAX, CONTROL_N, get_speed_error
 from openpilot.common.swaglog import cloudlog
+from openpilot.selfdrive.controls.lib.dynamicE2E import DynamicEndtoEndController
 
 LON_MPC_STEP = 0.2  # first step is 0.2s
 A_CRUISE_MIN = -1.2
@@ -46,6 +48,8 @@ def limit_accel_in_turns(v_ego, angle_steers, a_target, CP):
 
 class LongitudinalPlanner:
   def __init__(self, CP, init_v=0.0, init_a=0.0, dt=DT_MDL):
+    self.dynamic_endtoend_controller = DynamicEndtoEndController()
+
     self.CP = CP
     self.mpc = LongitudinalMpc()
     self.fcw = False
@@ -59,6 +63,9 @@ class LongitudinalPlanner:
     self.a_desired_trajectory = np.zeros(CONTROL_N)
     self.j_desired_trajectory = np.zeros(CONTROL_N)
     self.solverExecutionTime = 0.0
+
+    self.params = Params()
+    self.param_read_cnt = 0
 
   @staticmethod
   def parse_model(model_msg, model_error):
@@ -77,7 +84,15 @@ class LongitudinalPlanner:
     return x, v, a, j
 
   def update(self, sm):
-    self.mpc.mode = 'blended' if sm['controlsState'].experimentalMode else 'acc'
+    if self.param_read_cnt % 100 == 0:
+      self.dynamic_endtoend_controller.set_enabled(self.params.get_bool("FpDynamicE2E"))
+    self.param_read_cnt += 1
+
+    if self.dynamic_endtoend_controller.is_enabled():
+      self.dynamic_endtoend_controller.set_mpc_fcw_crash_cnt(self.mpc.crash_cnt)
+      self.mpc.mode = self.dynamic_endtoend_controller.get_mpc_mode(self.CP.radarUnavailable, sm['carState'], sm['radarState'].leadOne, sm['modelV2'], sm['controlsState'], sm['navInstruction'].maneuverDistance)
+    else:
+      self.mpc.mode = 'blended' if sm['controlsState'].experimentalMode else 'acc'
 
     v_ego = sm['carState'].vEgo
     v_cruise_kph = min(sm['controlsState'].vCruise, V_CRUISE_MAX)
@@ -157,3 +172,9 @@ class LongitudinalPlanner:
     longitudinalPlan.solverExecutionTime = self.mpc.solve_time
 
     pm.send('longitudinalPlan', plan_send)
+
+    ###fp
+    plan_ext_send = messaging.new_message('longitudinalPlanExt')
+    longitudinalPlanExt = plan_ext_send.longitudinalPlanExt
+    longitudinalPlanExt.dpE2EIsBlended = (self.mpc.mode == 'blended')
+    pm.send('longitudinalPlanExt', plan_ext_send)
