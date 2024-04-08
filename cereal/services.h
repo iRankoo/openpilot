@@ -80,6 +80,7 @@ static std::map<std::string, service> services = {
   { "customReservedRawData0", {"customReservedRawData0", 8074, true, 0, -1}},
   { "customReservedRawData1", {"customReservedRawData1", 8075, true, 0, -1}},
   { "customReservedRawData2", {"customReservedRawData2", 8076, true, 0, -1}},
+  { "longitudinalPlanExt", {"longitudinalPlanExt", 8077, false, 20, 5}},
 };
 #endif
 

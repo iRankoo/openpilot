@@ -22,4 +22,3 @@ with open("/data/openpilot/carlist.txt", 'w') as f:
   for value in PLATFORMS.values():
     f.write(value)
     f.write("\n")
-    #print(value)

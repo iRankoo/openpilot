@@ -11,3 +11,4 @@ cdef class CLMem:
 
   @staticmethod
   cdef create(void*)
+

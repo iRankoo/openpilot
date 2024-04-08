@@ -34,15 +34,15 @@ CAPNP_DECLARE_SCHEMA(a1680744031fdb2d);
 
 namespace cereal {
 
-struct CustomReserved0 {
-  CustomReserved0() = delete;
+struct LongitudinalPlanExt {
+  LongitudinalPlanExt() = delete;
 
   class Reader;
   class Builder;
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(81c2f05a394cf4af, 0, 0)
+    CAPNP_DECLARE_STRUCT_HEADER(81c2f05a394cf4af, 1, 0)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -186,9 +186,9 @@ struct CustomReserved9 {
 
 // =======================================================================================
 
-class CustomReserved0::Reader {
+class LongitudinalPlanExt::Reader {
 public:
-  typedef CustomReserved0 Reads;
+  typedef LongitudinalPlanExt Reads;
 
   Reader() = default;
   inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
@@ -203,6 +203,8 @@ public:
   }
 #endif  // !CAPNP_LITE
 
+  inline bool getDpE2EIsBlended() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -215,9 +217,9 @@ private:
   friend class ::capnp::Orphanage;
 };
 
-class CustomReserved0::Builder {
+class LongitudinalPlanExt::Builder {
 public:
-  typedef CustomReserved0 Builds;
+  typedef LongitudinalPlanExt Builds;
 
   Builder() = delete;  // Deleted to discourage incorrect usage.
                        // You can explicitly initialize to nullptr instead.
@@ -231,6 +233,9 @@ public:
   inline ::kj::StringTree toString() const { return asReader().toString(); }
 #endif  // !CAPNP_LITE
 
+  inline bool getDpE2EIsBlended();
+  inline void setDpE2EIsBlended(bool value);
+
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -241,9 +246,9 @@ private:
 };
 
 #if !CAPNP_LITE
-class CustomReserved0::Pipeline {
+class LongitudinalPlanExt::Pipeline {
 public:
-  typedef CustomReserved0 Pipelines;
+  typedef LongitudinalPlanExt Pipelines;
 
   inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
   inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
@@ -897,6 +902,20 @@ private:
 #endif  // !CAPNP_LITE
 
 // =======================================================================================
+
+inline bool LongitudinalPlanExt::Reader::getDpE2EIsBlended() const {
+  return _reader.getDataField<bool>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+
+inline bool LongitudinalPlanExt::Builder::getDpE2EIsBlended() {
+  return _builder.getDataField<bool>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+inline void LongitudinalPlanExt::Builder::setDpE2EIsBlended(bool value) {
+  _builder.setDataField<bool>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
+}
 
 }  // namespace
 

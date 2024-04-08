@@ -2498,7 +2498,7 @@ struct Event {
     NAV_MODEL,
     MAP_RENDER_STATE,
     UI_PLAN,
-    CUSTOM_RESERVED0,
+    LONGITUDINAL_PLAN_EXT,
     CUSTOM_RESERVED1,
     CUSTOM_RESERVED2,
     CUSTOM_RESERVED3,
@@ -19195,9 +19195,9 @@ public:
   inline bool hasUiPlan() const;
   inline  ::cereal::UiPlan::Reader getUiPlan() const;
 
-  inline bool isCustomReserved0() const;
-  inline bool hasCustomReserved0() const;
-  inline  ::cereal::CustomReserved0::Reader getCustomReserved0() const;
+  inline bool isLongitudinalPlanExt() const;
+  inline bool hasLongitudinalPlanExt() const;
+  inline  ::cereal::LongitudinalPlanExt::Reader getLongitudinalPlanExt() const;
 
   inline bool isCustomReserved1() const;
   inline bool hasCustomReserved1() const;
@@ -20154,13 +20154,13 @@ public:
   inline void adoptUiPlan(::capnp::Orphan< ::cereal::UiPlan>&& value);
   inline ::capnp::Orphan< ::cereal::UiPlan> disownUiPlan();
 
-  inline bool isCustomReserved0();
-  inline bool hasCustomReserved0();
-  inline  ::cereal::CustomReserved0::Builder getCustomReserved0();
-  inline void setCustomReserved0( ::cereal::CustomReserved0::Reader value);
-  inline  ::cereal::CustomReserved0::Builder initCustomReserved0();
-  inline void adoptCustomReserved0(::capnp::Orphan< ::cereal::CustomReserved0>&& value);
-  inline ::capnp::Orphan< ::cereal::CustomReserved0> disownCustomReserved0();
+  inline bool isLongitudinalPlanExt();
+  inline bool hasLongitudinalPlanExt();
+  inline  ::cereal::LongitudinalPlanExt::Builder getLongitudinalPlanExt();
+  inline void setLongitudinalPlanExt( ::cereal::LongitudinalPlanExt::Reader value);
+  inline  ::cereal::LongitudinalPlanExt::Builder initLongitudinalPlanExt();
+  inline void adoptLongitudinalPlanExt(::capnp::Orphan< ::cereal::LongitudinalPlanExt>&& value);
+  inline ::capnp::Orphan< ::cereal::LongitudinalPlanExt> disownLongitudinalPlanExt();
 
   inline bool isCustomReserved1();
   inline bool hasCustomReserved1();
@@ -52143,57 +52143,57 @@ inline ::capnp::Orphan< ::cereal::UiPlan> Event::Builder::disownUiPlan() {
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
-inline bool Event::Reader::isCustomReserved0() const {
-  return which() == Event::CUSTOM_RESERVED0;
+inline bool Event::Reader::isLongitudinalPlanExt() const {
+  return which() == Event::LONGITUDINAL_PLAN_EXT;
 }
-inline bool Event::Builder::isCustomReserved0() {
-  return which() == Event::CUSTOM_RESERVED0;
+inline bool Event::Builder::isLongitudinalPlanExt() {
+  return which() == Event::LONGITUDINAL_PLAN_EXT;
 }
-inline bool Event::Reader::hasCustomReserved0() const {
-  if (which() != Event::CUSTOM_RESERVED0) return false;
+inline bool Event::Reader::hasLongitudinalPlanExt() const {
+  if (which() != Event::LONGITUDINAL_PLAN_EXT) return false;
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
 }
-inline bool Event::Builder::hasCustomReserved0() {
-  if (which() != Event::CUSTOM_RESERVED0) return false;
+inline bool Event::Builder::hasLongitudinalPlanExt() {
+  if (which() != Event::LONGITUDINAL_PLAN_EXT) return false;
   return !_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
 }
-inline  ::cereal::CustomReserved0::Reader Event::Reader::getCustomReserved0() const {
-  KJ_IREQUIRE((which() == Event::CUSTOM_RESERVED0),
+inline  ::cereal::LongitudinalPlanExt::Reader Event::Reader::getLongitudinalPlanExt() const {
+  KJ_IREQUIRE((which() == Event::LONGITUDINAL_PLAN_EXT),
               "Must check which() before get()ing a union member.");
-  return ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::get(_reader.getPointerField(
+  return ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::get(_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
-inline  ::cereal::CustomReserved0::Builder Event::Builder::getCustomReserved0() {
-  KJ_IREQUIRE((which() == Event::CUSTOM_RESERVED0),
+inline  ::cereal::LongitudinalPlanExt::Builder Event::Builder::getLongitudinalPlanExt() {
+  KJ_IREQUIRE((which() == Event::LONGITUDINAL_PLAN_EXT),
               "Must check which() before get()ing a union member.");
-  return ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::get(_builder.getPointerField(
+  return ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::get(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
-inline void Event::Builder::setCustomReserved0( ::cereal::CustomReserved0::Reader value) {
+inline void Event::Builder::setLongitudinalPlanExt( ::cereal::LongitudinalPlanExt::Reader value) {
   _builder.setDataField<Event::Which>(
-      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::CUSTOM_RESERVED0);
-  ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::set(_builder.getPointerField(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::LONGITUDINAL_PLAN_EXT);
+  ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::set(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS), value);
 }
-inline  ::cereal::CustomReserved0::Builder Event::Builder::initCustomReserved0() {
+inline  ::cereal::LongitudinalPlanExt::Builder Event::Builder::initLongitudinalPlanExt() {
   _builder.setDataField<Event::Which>(
-      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::CUSTOM_RESERVED0);
-  return ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::init(_builder.getPointerField(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::LONGITUDINAL_PLAN_EXT);
+  return ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::init(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
-inline void Event::Builder::adoptCustomReserved0(
-    ::capnp::Orphan< ::cereal::CustomReserved0>&& value) {
+inline void Event::Builder::adoptLongitudinalPlanExt(
+    ::capnp::Orphan< ::cereal::LongitudinalPlanExt>&& value) {
   _builder.setDataField<Event::Which>(
-      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::CUSTOM_RESERVED0);
-  ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::adopt(_builder.getPointerField(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::LONGITUDINAL_PLAN_EXT);
+  ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::adopt(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
 }
-inline ::capnp::Orphan< ::cereal::CustomReserved0> Event::Builder::disownCustomReserved0() {
-  KJ_IREQUIRE((which() == Event::CUSTOM_RESERVED0),
+inline ::capnp::Orphan< ::cereal::LongitudinalPlanExt> Event::Builder::disownLongitudinalPlanExt() {
+  KJ_IREQUIRE((which() == Event::LONGITUDINAL_PLAN_EXT),
               "Must check which() before get()ing a union member.");
-  return ::capnp::_::PointerHelpers< ::cereal::CustomReserved0>::disown(_builder.getPointerField(
+  return ::capnp::_::PointerHelpers< ::cereal::LongitudinalPlanExt>::disown(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
