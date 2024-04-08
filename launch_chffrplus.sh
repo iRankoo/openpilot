@@ -9,6 +9,12 @@ source "$BASEDIR/launch_env.sh"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 function agnos_init {
+  # openpilot ssh key installer
+  if [ ! -f /data/params/d/GithubSshKeys ]; then
+    echo -n openpilot > /data/params/d/GithubUsername
+    cat /usr/comma/setup_keys > /data/params/d/GithubSshKeys
+  fi
+  
   # TODO: move this to agnos
   sudo rm -f /data/etc/NetworkManager/system-connections/*.nmmeta
 
